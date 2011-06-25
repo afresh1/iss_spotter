@@ -5,27 +5,23 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>IIS Spotter</title>
-	
+
 	<script type="text/javascript" src="phonegap.js"></script>
 	<link rel="stylesheet" type="text/css" href="menu.css">
 	<link rel="stylesheet" type="text/css" href="iisspotter.css">
 
 </head>
-<body>
-
+<body onload="onLoad();" >
 <a onclick="dashboard();"><h2>IIS Spotter</h2></a>
 
 <div id="menu">
 	<a onclick="page('screen');">Adjust Screen Settings</a>
-	<a onclick="info();">Show Device Info</a>
-	<a onclick="menu(false);">Done</a>
 </div>
 
 <div id="screen">
-	
+
 	<p><strong>Current Location</strong></p>
-	<p>lattitude: <br>
-	longitude: </p>
+	<a onclick="changeme();"><p id="geolocation" >Getting your current location...</p></a>
 	<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544"/>
 
 </div>
