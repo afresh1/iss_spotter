@@ -4,7 +4,7 @@
 
 var issSpotter = function() {
 	var that = {};
-	var stack;
+	var stack, scn, mainCard;
 	var lastreq = null;
 	var lastpage = document.getElementById('screen');
 	var phonegap = new PhoneGap();
@@ -23,6 +23,7 @@ var issSpotter = function() {
 		joFile(url, function(data, error) {
 			if (error) {
 				console.log("error loading file");
+				scn.alert("Error Spotting the ISS");
 				return;
 			}
 			if (callback) {
@@ -143,22 +144,19 @@ var issSpotter = function() {
 				            + "</p>";
 			}
 		// create our view card
-		var card = new joCard([
+		mainCard.setData([
 		    new joTitle("The ISS"),
 		    new joCaption("There in the sky!"),
 		    new joDivider(),
                     new joFlexrow([
-                    new joHTML('<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544" />'),
-		    new joDivider(),
-                    new joHTML(html),
-			]),
+                    	new joHTML('<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544" />'),
+		    	new joDivider(),
+                    	new joHTML(html),
+		    ]),
 		    new joButton("Refresh").selectEvent.subscribe(function() {
-			that.refresh();
+			refresh();
 		    })
 		]);
-
-		// put the card on our view stack
-		stack.push(card);
 		});
 
 	};
@@ -172,21 +170,22 @@ var issSpotter = function() {
 		jo.load();
 		// setup a stack and screen
 		stack = new joStackScroller();
-		var scn = new joScreen(stack);
+		scn = new joScreen(stack);
 
 		// create our view card
-		var card = new joCard([
+		mainCard = new joCard([
 		    new joTitle("Loading"),
 		    new joCaption("Loading!"),
 		    new joDivider(),
                     new joHTML('<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544" />'),
 		    new joButton("Refresh").selectEvent.subscribe(function() {
+			this.setData("Loading...");
 			that.refresh();
 		    })
 		]);
 
 		// put the card on our view stack
-		stack.push(card);
+		stack.push(mainCard);
 
 		navigator.geolocation.getCurrentPosition(onGetPositionSuccess, onError);
 		
