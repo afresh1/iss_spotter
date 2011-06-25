@@ -5,7 +5,7 @@ var phonegap = new PhoneGap();
 navigator.device.deviceReady();
 
 function dashboard() {
-    navigator.notification.newDashboard("dashboard.html");
+    //navigator.notification.newDashboard("dashboard.html");
 }
 
 function info() {
@@ -26,25 +26,12 @@ lastreq = null;
 
 var lastpage = document.getElementById('screen');
 
-function page(id) {
-	lastpage.style.display = 'none';
-	lastpage = document.getElementById(id);
-	lastpage.style.display = 'block';
-	menu(false);
-}
-
-function onLoad() {
-        var element = document.getElementById('geolocation');
-        element.innerHTML = 'Latitude: '           + 1234              + '<br />' +
-                            'Longitude: '          + 5678             + '<br />';
-}
-
 function onError(error) {
         var element = document.getElementById('geolocation');
         element.innerHTML = 'error getting location.';
 }
 
-function changeme() {
+function onLoad() {
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
 
