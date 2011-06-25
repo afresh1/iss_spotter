@@ -1,21 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
 
-<!--
-
-	This sample index.html is a "bare bones" example of using web development
-	to produce a webOS app using mini Mojo. This is *not* designed to illustrate
-	best practices (as the advanced developer will notice right off), but
-	rather to show that even basic "web 1.0" skills can successfully create an
-	app.
-
--->
-
-
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>PhoneGap WebOS</title>
+	<title>IIS Spotter</title>
 	
 	<script type="text/javascript" src="phonegap.js"></script>
 	<link rel="stylesheet" type="text/css" href="menu.css">
@@ -23,46 +12,22 @@
 </head>
 <body>
 
-<a onclick="dashboard();">Dashboard</a>
+<a onclick="dashboard();"><h2>IIS Spotter</h2></a>
 
 <div id="menu">
 	<a onclick="page('screen');">Adjust Screen Settings</a>
 	<a onclick="info();">Show Device Info</a>
-	<a onclick="net();">Show Network Info</a>	
-	<a onclick="navigator.notification.showBanner('Banner test','banner');menu(false);">Show Banner Message</a>
-	<a onclick="window.debug.log('trace this');">Console Logging</a>
-	<a onclick="launchmap()">Launch Map App</a>
-	<a onclick="navigator.window.newCard('about:blank', '<html><body>Hello again!</body></html>');menu(false);">Launch New Card</a>
-	<a onclick="getPicture();">Launch Camera</a>
 	<a onclick="menu(false);">Done</a>
 </div>
 
 <div id="screen">
-	<p><input type="checkbox" onchange="navigator.window.setFullScreen(this.checked);">navigator.window.setFullScreen();</p>
-	<p><input type="checkbox" onchange="navigator.window.blockScreenTimeout(this.checked);">navigator.window.blockScreenTimeout();</p>
-	<p><input type="checkbox" onchange="navigator.accelerometer.setFastAccelerometer(this.checked);">navigator.accelerometer.fastAccelerometer();</p>
-	<p>navigator.orientation.setWindowOrientation();</p>
-	<input type="radio" onchange="navigator.orientation.setOrientation(this.value);" value="up" name="orientation" checked>up
-	<input type="radio" onchange="navigator.orientation.setOrientation(this.value);" value="down" name="orientation">down
-	<input type="radio" onchange="navigator.orientation.setOrientation(this.value);" value="left" name="orientation">left
-	<input type="radio" onchange="navigator.orientation.setOrientation(this.value);" value="right" name="orientation">right
-	<input type="radio" onchange="navigator.orientation.setOrientation(this.value);" value="free" name="orientation">free
+	
+	<p><strong>Current Location</strong></p>
+	<p>lattitude: <br>
+	longitude: </p>
+	<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544"/>
 
-	
-	<p>navigator.orientation.getCurrentOrientation()</p>
-	<input type="button" onclick="displayCurrentOrientation();" value="Get Current Orientation">  
-	
-	<p>navigator.notification.alert();</p>
-	<input type="button" onclick="navigator.notification.alert('alert');" value="Show Alert">      
-	
-	
 </div>
-
-<div id="info"></div>
-
-<div id="net"></div>
-
-<div id="camera"></div>
 
 <script>
 
