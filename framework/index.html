@@ -6,13 +6,23 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>IIS Spotter</title>
 
-	<script type="text/javascript" src="phonegap.js"></script>
-	<link rel="stylesheet" type="text/css" href="../css/jo.css">
-	<link rel="stylesheet" href="../iss_spotter.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/jo.css">
+	<link rel="stylesheet" href="iss_spotter.css" type="text/css">
 	<link rel="stylesheet" type="text/css" href="menu.css">
-	<link rel="stylesheet" type="text/css" href="iisspotter.css">
-	<script type="text/javascript" src="../js/jo.js"></script>
-	<script type="text/javascript" src="../iss_passes.js"></script>
+
+	<script type="text/javascript" src="phonegap.js"></script>
+	<script type="text/javascript" src="js/jo.js"></script>
+	<script type="text/javascript" src="iss_spotter.js"></script>
+	<script type="text/javascript">
+		function onLoad() {
+			var iss = new issSpotter;
+			iss.onLoad();
+
+//iss.getPasses( "37.386", "-122.083", function(times) {
+	//console.log(times);
+//});
+		}
+	</script>
 
 </head>
 <body onload="onLoad();" >
@@ -24,15 +34,9 @@
 
 <div id="screen">
 	<p><strong>Current Location</strong></p>
-	<a><p id="geolocation" >Getting your current location...</p></a>
+	<a><div id="geolocation"><p>Getting your current location...<p></div></a>
 	<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544"/>
 </div>
 
 </body>
-<script>
-jo.load();
-var iss = new issPasses();
-iss.getPasses( "37.386", "-122.083", function(times) {
-	console.log(times);
-});
 </html>
