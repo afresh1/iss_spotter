@@ -90,7 +90,9 @@ var issSpotter = function() {
 						pass.end.az = content;
 				}
 			}
-			passes.push(pass);
+			if (pass.start.time - Date.now() > 0) {;
+				passes.push(pass);
+			}
 		}
 
 		return passes;
@@ -138,7 +140,7 @@ var issSpotter = function() {
 			console.log(times);
 			for (i = 0; i < times.length; i++) {
 				t = times[i];
-				html += "<hr /><p>"
+				html += "<hr /><p>Can you wait another " + timeUntil(t.start.time) + "<br />"
 				            + "Start: " + new Date(t.start.time) + ' Altitude: ' + t.start.alt + ' Azimuth: ' + t.start.az + '<br />'
 				            + "Max: " + new Date(t.max.time) + ' Altitude: ' + t.max.alt + ' Azimuth: ' + t.max.az + '<br />'
 				            + "End: " + new Date(t.end.time) + ' Altitude: ' + t.end.alt + ' Azimuth: ' + t.end.az + '<br />'
@@ -161,6 +163,20 @@ var issSpotter = function() {
 		});
 
 	};
+
+	var timeUntil = function(when) {
+		var diff = when - Date.now();
+		var seconds = parseInt( diff / 1000 );
+		var miliseconds = diff % 1000;
+		var minutes = parseInt( seconds / 60 );
+		seconds = seconds % 60;
+		if (seconds < 10) { seconds = "0" + seconds };
+		var hours = parseInt( minutes / 60 );
+		minutes = minutes % 60;
+		if (minutes < 10) { minutes = "0" + minutes };
+		return hours + " hours and " + minutes + " minutes?"
+
+	}
 
 	// PhoneGap is ready
 	//function onDeviceReady() {
