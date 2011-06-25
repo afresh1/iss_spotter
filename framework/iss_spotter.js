@@ -76,14 +76,14 @@ var issSpotter = function() {
 						pass.start.az = content;
 					case 5:
 						time = content.split(':');
-						pass.max.time = Date.UTC(year, pass.date[0], pass.date[1], time[0], time[1], time[2], 0);
+						pass.max.time = Date.UTC(year, pass.date[1], pass.date[0], time[0], time[1], time[2], 0);
 					case 6:
 						pass.max.alt = content;
 					case 7:
 						pass.max.az = content;
 					case 8:
 						time = content.split(':');
-						pass.end.time = Date.UTC(year, pass.date[0], pass.date[1], time[0], time[1], time[2], 0);
+						pass.end.time = Date.UTC(year, pass.date[1], pass.date[0], time[0], time[1], time[2], 0);
 					case 9:
 						pass.end.alt = content;
 					case 10:
@@ -151,7 +151,7 @@ var issSpotter = function() {
                     	new joHTML(html),
 		    ]),
 		    new joButton("Refresh").selectEvent.subscribe(function() {
-			refresh();
+			that.refresh();
 		    })
 		]);
 		});
@@ -172,11 +172,10 @@ var issSpotter = function() {
 		// create our view card
 		mainCard = new joCard([
 		    new joTitle("Loading"),
-		    new joCaption("Loading!"),
+		    new joCaption("Loading..."),
 		    new joDivider(),
                     new joHTML('<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544" />'),
 		    new joButton("Refresh").selectEvent.subscribe(function() {
-			this.setData("Loading...");
 			that.refresh();
 		    })
 		]);
