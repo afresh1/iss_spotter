@@ -4,7 +4,7 @@
 	"vendor": "The Muther",
 	"type": "web",
 	"main": "index.html",
-	"title": "IIS Spotter",
+	"title": "ISS Spotter",
 	"uiRevision": "2",
 	"icon": "issspotter.png"
 }
