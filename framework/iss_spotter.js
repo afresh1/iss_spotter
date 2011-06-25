@@ -126,14 +126,10 @@ var issSpotter = function() {
 
 	var onGetPositionSuccess = function(position) {
 		//var element = document.getElementById('geolocation');
-		var html = '<p>Latitude: '           + position.coords.latitude              + '<br />' +
+		var html = '<p><strong>Your current location:</strong> ' + '<br />' +
+				    'Latitude: '           + position.coords.latitude              + '<br />' +
 				    'Longitude: '          + position.coords.longitude             + '<br />' +
-				    'Altitude: '           + position.coords.altitude              + '<br />' +
-				    'Accuracy: '           + position.coords.accuracy              + '<br />' +
-				    'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
-				    'Heading: '            + position.coords.heading               + '<br />' +
-				    'Speed: '              + position.coords.speed                 + '<br />' +
-				    'Timestamp: '          + new Date(position.timestamp)          + '<br /></p>';
+				    'Altitude: '           + position.coords.altitude              + '<br /></p>';
 
 		getPasses( position, function(times) {
 			var i, t;
@@ -149,7 +145,7 @@ var issSpotter = function() {
 		// create our view card
 		mainCard.setData([
 		    new joTitle("The ISS"),
-		    new joCaption("There in the sky!"),
+		    new joCaption("<strong>International Space Station Location</strong>"),
 		    new joDivider(),
                     new joFlexrow([
                     	new joHTML('<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544" />'),
