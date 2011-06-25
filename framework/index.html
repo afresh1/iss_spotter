@@ -4,31 +4,15 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<<<<<<< HEAD
-	<title>PhoneGap WebOS</title>
-	
-	<link rel="stylesheet" type="text/css" href="../css/jo.css">
-	<link rel="stylesheet" type="text/css" href="menu.css">
-	<link rel="stylesheet" href="../iss_spotter.css" type="text/css">
-	<script type="text/javascript" src="../js/jo.js"></script>
-	<script type="text/javascript" src="../iss_passes.js"></script>
-	
-</head>
-<body>
-<div id="content"></div>
-<script>
-jo.load();
-var iss = new issPasses();
-iss.getPasses( "37.386", "-122.083", function(times) {
-	console.log(times);
-});
-</script>
-=======
 	<title>IIS Spotter</title>
 
 	<script type="text/javascript" src="phonegap.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/jo.css">
+	<link rel="stylesheet" href="../iss_spotter.css" type="text/css">
 	<link rel="stylesheet" type="text/css" href="menu.css">
 	<link rel="stylesheet" type="text/css" href="iisspotter.css">
+	<script type="text/javascript" src="../js/jo.js"></script>
+	<script type="text/javascript" src="../iss_passes.js"></script>
 
 </head>
 <body onload="onLoad();" >
@@ -39,14 +23,16 @@ iss.getPasses( "37.386", "-122.083", function(times) {
 </div>
 
 <div id="screen">
-
 	<p><strong>Current Location</strong></p>
 	<a><p id="geolocation" >Getting your current location...</p></a>
 	<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544"/>
->>>>>>> 405193a7f1e1ae86ec5a6663c27caa24ad0fa2fb
-
 </div>
 
 </body>
-	<script type="text/javascript" src="iisspotter.js"></script>
+<script>
+jo.load();
+var iss = new issPasses();
+iss.getPasses( "37.386", "-122.083", function(times) {
+	console.log(times);
+});
 </html>
