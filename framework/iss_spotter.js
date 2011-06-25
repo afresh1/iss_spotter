@@ -149,7 +149,7 @@ var issSpotter = function() {
 		    new joCaption("<strong>International Space Station Location</strong>"),
 		    new joDivider(),
                     new joFlexrow([
-                    	new joHTML('<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544" />'),
+                    	new joHTML('<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=450&height=450&satid=25544" />'),
 		    	new joDivider(),
                     	new joHTML(html),
 		    ]),
@@ -191,7 +191,7 @@ var issSpotter = function() {
 		    new joTitle("Loading"),
 		    new joCaption("Loading..."),
 		    new joDivider(),
-                    new joHTML('<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544" />'),
+                    new joHTML('<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=450&height=450&satid=25544" />'),
 		    new joButton("Refresh").selectEvent.subscribe(function() {
 			that.refresh();
 		    })
