@@ -147,7 +147,7 @@ var issSpotter = function() {
 		// create our view card
 		mainCard.setData([
 		    new joTitle("The ISS"),
-		    new joCaption("There in the sky!"),
+		    new joCaption("<strong>International Space Station Location</strong>"),
 		    new joDivider(),
                     new joFlexrow([
                     	new joHTML('<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544" />'),
