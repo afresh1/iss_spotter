@@ -1,9 +1,10 @@
 {
-	"id": "com.phonegap.webos",
+	"id": "com.themuther.issspotter",
 	"version": "0.0.1",
-	"vendor": "Palm",
+	"vendor": "The Muther",
 	"type": "web",
 	"main": "index.html",
-	"title": "PhoneGap WebOS",
-	"uiRevision": "2"
+	"title": "IIS Spotter",
+	"uiRevision": "2",
+	"icon": "issspotter.png"
 }

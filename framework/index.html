@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<<<<<<< HEAD
 	<title>PhoneGap WebOS</title>
 	
 	<link rel="stylesheet" type="text/css" href="../css/jo.css">
@@ -22,7 +23,30 @@ iss.getPasses( "37.386", "-122.083", function(times) {
 	console.log(times);
 });
 </script>
+=======
+	<title>IIS Spotter</title>
 
+	<script type="text/javascript" src="phonegap.js"></script>
+	<link rel="stylesheet" type="text/css" href="menu.css">
+	<link rel="stylesheet" type="text/css" href="iisspotter.css">
+
+</head>
+<body onload="onLoad();" >
+<a onclick="dashboard();"><h2>IIS Spotter</h2></a>
+
+<div id="menu">
+	<a onclick="page('screen');">Adjust Screen Settings</a>
+</div>
+
+<div id="screen">
+
+	<p><strong>Current Location</strong></p>
+	<a><p id="geolocation" >Getting your current location...</p></a>
+	<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544"/>
+>>>>>>> 405193a7f1e1ae86ec5a6663c27caa24ad0fa2fb
+
+</div>
 
 </body>
+	<script type="text/javascript" src="iisspotter.js"></script>
 </html>
