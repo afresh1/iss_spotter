@@ -134,13 +134,14 @@ var issSpotter = function() {
 		getPasses( position, function(times) {
 			var i, t;
 			console.log(times);
+			html += "<hr /><p><strong>The next time IIS will be visible above your location:</strong></p>";
 			for (i = 0; i < times.length; i++) {
 				t = times[i];
-				html += "<hr /><p>Can you wait another " + timeUntil(t.start.time) + "<br />"
+				html += "<p>" + timeUntil(t.start.time) + "<br />"
 				            + "Start: " + new Date(t.start.time) + ' Altitude: ' + t.start.alt + ' Azimuth: ' + t.start.az + '<br />'
 				            + "Max: " + new Date(t.max.time) + ' Altitude: ' + t.max.alt + ' Azimuth: ' + t.max.az + '<br />'
 				            + "End: " + new Date(t.end.time) + ' Altitude: ' + t.end.alt + ' Azimuth: ' + t.end.az + '<br />'
-				            + "</p>";
+				            + "<hr /></p>";
 			}
 		// create our view card
 		mainCard.setData([
@@ -170,7 +171,7 @@ var issSpotter = function() {
 		var hours = parseInt( minutes / 60 );
 		minutes = minutes % 60;
 		if (minutes < 10) { minutes = "0" + minutes };
-		return hours + " hours and " + minutes + " minutes?"
+		return hours + " hours and " + minutes + " minutes"
 
 	}
 
