@@ -124,14 +124,10 @@ var issSpotter = function() {
 
 	var onGetPositionSuccess = function(position) {
 		//var element = document.getElementById('geolocation');
-		var html = '<p>Latitude: '           + position.coords.latitude              + '<br />' +
+		var html = '<p><strong>Your current location:</strong> ' + '<br />' +
+				    'Latitude: '           + position.coords.latitude              + '<br />' +
 				    'Longitude: '          + position.coords.longitude             + '<br />' +
-				    'Altitude: '           + position.coords.altitude              + '<br />' +
-				    'Accuracy: '           + position.coords.accuracy              + '<br />' +
-				    'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
-				    'Heading: '            + position.coords.heading               + '<br />' +
-				    'Speed: '              + position.coords.speed                 + '<br />' +
-				    'Timestamp: '          + new Date(position.timestamp)          + '<br /></p>';
+				    'Altitude: '           + position.coords.altitude              + '<br /></p>';
 
 		getPasses( position, function(times) {
 			var i, t;
