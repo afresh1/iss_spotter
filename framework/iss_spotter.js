@@ -1,16 +1,23 @@
 /* 
  * issSpotter - Get the next visible ISS Passes from heavens-above.com
 */
+
 var issSpotter = function() {
+	var that = {};
+	var stack;
 	var lastreq = null;
 	var lastpage = document.getElementById('screen');
 	var phonegap = new PhoneGap();
 
-	var getPasses = function(lat,lng,callback) {
+	var getPasses = function(position, callback) {
 		var url = "http://heavens-above.com/PassSummary.aspx"
 		    + "?satid=25544&tz=UCT"
-		    + "&lat=" + lat
-		    + "&lng=" + lng;
+		    + "&lat=" + position.coords.latitude
+		    + "&lng=" + position.coords.longitude;
+
+		if (position.coords.altitudeAccuracy > 0) {
+			url += "&alt=" + position.coords.altitude;
+		}
 		
 		console.log(url);
 		joFile(url, function(data, error) {
@@ -114,8 +121,8 @@ var issSpotter = function() {
 	};
 
 	var onGetPositionSuccess = function(position) {
-		var element = document.getElementById('geolocation');
-		element.innerHTML = '<p>Latitude: '           + position.coords.latitude              + '<br />' +
+		//var element = document.getElementById('geolocation');
+		var html = '<p>Latitude: '           + position.coords.latitude              + '<br />' +
 				    'Longitude: '          + position.coords.longitude             + '<br />' +
 				    'Altitude: '           + position.coords.altitude              + '<br />' +
 				    'Accuracy: '           + position.coords.accuracy              + '<br />' +
@@ -124,20 +131,37 @@ var issSpotter = function() {
 				    'Speed: '              + position.coords.speed                 + '<br />' +
 				    'Timestamp: '          + new Date(position.timestamp)          + '<br /></p>';
 
-		getPasses( position.coords.latitude, position.coords.longitude, function(times) {
+		getPasses( position, function(times) {
 			var i, t;
 			console.log(times);
 			for (i = 0; i < times.length; i++) {
 				t = times[i];
-				element.innerHTML += "<hr /><p>"
+				html += "<hr /><p>"
 				            + "Start: " + new Date(t.start.time) + ' Altitude: ' + t.start.alt + ' Azimuth: ' + t.start.az + '<br />'
 				            + "Max: " + new Date(t.max.time) + ' Altitude: ' + t.max.alt + ' Azimuth: ' + t.max.az + '<br />'
 				            + "End: " + new Date(t.end.time) + ' Altitude: ' + t.end.alt + ' Azimuth: ' + t.end.az + '<br />'
 				            + "</p>";
 			}
+		// create our view card
+		var card = new joCard([
+		    new joTitle("The ISS"),
+		    new joCaption("There in the sky!"),
+		    new joDivider(),
+                    new joFlexrow([
+                    new joHTML('<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544" />'),
+		    new joDivider(),
+                    new joHTML(html),
+			]),
+		    new joButton("Refresh").selectEvent.subscribe(function() {
+			that.refresh();
+		    })
+		]);
+
+		// put the card on our view stack
+		stack.push(card);
 		});
 
-	}
+	};
 
 	// PhoneGap is ready
 	//function onDeviceReady() {
@@ -145,16 +169,41 @@ var issSpotter = function() {
 	//}
 
 	var onLoad = function() {
-		navigator.device.deviceReady();
 		jo.load();
+		// setup a stack and screen
+		stack = new joStackScroller();
+		var scn = new joScreen(stack);
+
+		// create our view card
+		var card = new joCard([
+		    new joTitle("Loading"),
+		    new joCaption("Loading!"),
+		    new joDivider(),
+                    new joHTML('<img src="http://www.heavens-above.com/orbitdisplay.aspx?icon=iss&width=500&height=500&satid=25544" />'),
+		    new joButton("Refresh").selectEvent.subscribe(function() {
+			that.refresh();
+		    })
+		]);
+
+		// put the card on our view stack
+		stack.push(card);
+
 		navigator.geolocation.getCurrentPosition(onGetPositionSuccess, onError);
+		
 		//must call this to let the device know that the app is ready
+		navigator.device.deviceReady();
+
+	};
+
+	var refresh = function() {
+		navigator.geolocation.getCurrentPosition(onGetPositionSuccess, onError);
 	}
 
-	return {
-		onLoad: onLoad,
-		getPasses: getPasses,
-		info: info
-	};
+	that.onLoad    = onLoad;
+	that.getPasses = getPasses;
+	that.refresh   = refresh;
+	that.info      = info;
+
+	return that;
 
 }
