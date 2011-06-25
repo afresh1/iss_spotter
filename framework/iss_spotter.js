@@ -10,7 +10,8 @@ var issSpotter = function() {
 	var phonegap = new PhoneGap();
 
 	var getPasses = function(position, callback) {
-		var url = "http://heavens-above.com/PassSummary.aspx"
+		var url = "http://us.holligan.net/~andrew/user-bin/proxy.cgi?"
+		    + "http://heavens-above.com/PassSummary.aspx"
 		    + "?satid=25544&tz=UCT"
 		    + "&lat=" + position.coords.latitude
 		    + "&lng=" + position.coords.longitude;
